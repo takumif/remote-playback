@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="en-US" typeof="bibo:Document w3p:WD" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta lang="" property="dc:language" content="en">
+  <style>
+    /*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+    
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      padding: 0.5em;
+      color: #333;
+      background: #f8f8f8;
+    }
+    
+    .hljs-comment,
+    .hljs-quote {
+      color: #998;
+      font-style: italic;
+    }
+    
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-subst {
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .hljs-number,
+    .hljs-literal,
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag .hljs-attr {
+      color: #008080;
+    }
+    
+    .hljs-string,
+    .hljs-doctag {
+      color: #d14;
+    }
+    
+    .hljs-title,
+    .hljs-section,
+    .hljs-selector-id {
+      color: #900;
+      font-weight: bold;
+    }
+    
+    .hljs-subst {
+      font-weight: normal;
+    }
+    
+    .hljs-type,
+    .hljs-class .hljs-title {
+      color: #458;
+      font-weight: bold;
+    }
+    
+    .hljs-tag,
+    .hljs-name,
+    .hljs-attribute {
+      color: #000080;
+      font-weight: normal;
+    }
+    
+    .hljs-regexp,
+    .hljs-link {
+      color: #009926;
+    }
+    
+    .hljs-symbol,
+    .hljs-bullet {
+      color: #990073;
+    }
+    
+    .hljs-built_in,
+    .hljs-builtin-name {
+      color: #0086b3;
+    }
+    
+    .hljs-meta {
+      color: #999;
+      font-weight: bold;
+    }
+    
+    .hljs-deletion {
+      background: #fdd;
+    }
+    
+    .hljs-addition {
+      background: #dfd;
+    }
+    
+    .hljs-emphasis {
+      font-style: italic;
+    }
+    
+    .hljs-strong {
+      font-weight: bold;
+    }
+  </style>
+  <style>
+    /* --- EXAMPLES --- */
+    
+    div.example-title {
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.example-title span {
+      text-transform: uppercase;
+    }
+    
+    aside.example,
+    div.example,
+    div.illegal-example {
+      padding: 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    div.illegal-example {
+      color: red
+    }
+    
+    div.illegal-example p {
+      color: black
+    }
+    
+    aside.example,
+    div.example {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+      border-color: #e0cb52;
+      background: #fcfaee;
+    }
+    
+    aside.example div.example {
+      border-left-width: .1em;
+      border-color: #999;
+      background: #fff;
+    }
+    
+    aside.example div.example div.example-title {
+      color: #999;
+    }
+  </style>
+  <style>
+    /* --- ISSUES/NOTES --- */
+    
+    div.issue-title,
+    div.note-title,
+    div.ednote-title,
+    div.warning-title {
+      padding-right: 1em;
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.issue-title {
+      color: #e05252;
+    }
+    
+    div.note-title,
+    div.ednote-title {
+      color: #2b2;
+    }
+    
+    div.warning-title {
+      color: #f22;
+    }
+    
+    div.issue-title span,
+    div.note-title span,
+    div.ednote-title span,
+    div.warning-title span {
+      text-transform: uppercase;
+    }
+    
+    div.note,
+    div.issue,
+    div.ednote,
+    div.warning {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    
+    .note>p:first-child,
+    .ednote>p:first-child,
+    .issue>p:first-child,
+    .warning>p:first-child {
+      margin-top: 0
+    }
+    
+    .issue,
+    .note,
+    .ednote,
+    .warning {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+    }
+    
+    div.issue,
+    div.note,
+    div.ednote,
+    div.warning {
+      padding: 1em 1.2em 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    span.note,
+    span.ednote,
+    span.issue,
+    span.warning {
+      padding: .1em .5em .15em;
+    }
+    
+    .issue {
+      border-color: #e05252;
+      background: #fbe9e9;
+    }
+    
+    .note,
+    .ednote {
+      border-color: #52e052;
+      background: #e9fbe9;
+    }
+    
+    .warning {
+      border-color: #f11;
+      border-width: .2em;
+      border-style: solid;
+      background: #fbe9e9;
+    }
+    
+    .warning-title:before {
+      content: "⚠";
+      /*U+26A0 WARNING SIGN*/
+      font-size: 3em;
+      float: left;
+      height: 100%;
+      padding-right: .3em;
+      vertical-align: top;
+      margin-top: -0.5em;
+    }
+    
+    li.task-list-item {
+      list-style: none;
+    }
+    
+    input.task-list-item-checkbox {
+      margin: 0 0.35em 0.25em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    /* --- WEB IDL --- */
+    
+    pre.idl {
+      border-top: 1px solid #90b8de;
+      border-bottom: 1px solid #90b8de;
+      padding: 1em;
+      line-height: 120%;
+    }
+    
+    @media print {
+      pre.idl {
+        white-space: pre-wrap;
+      }
+    }
+    
+    pre.idl::before {
+      content: "WebIDL";
+      display: block;
+      width: 150px;
+      background: #90b8de;
+      color: #fff;
+      font-family: sans-serif;
+      padding: 3px;
+      font-weight: bold;
+      margin: -1em 0 1em -1em;
+    }
+    
+    .idlType {
+      color: #ff4500;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    /*.idlModule*/
+    /*.idlModuleID*/
+    /*.idlInterface*/
+    
+    .idlInterfaceID,
+    .idlDictionaryID,
+    .idlCallbackID,
+    .idlEnumID {
+      font-weight: bold;
+      color: #005a9c;
+    }
+    
+    a.idlEnumItem {
+      color: #000;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    .idlSuperclass {
+      font-style: italic;
+      color: #005a9c;
+    }
+    /*.idlAttribute*/
+    
+    .idlAttrType,
+    .idlFieldType,
+    .idlMemberType {
+      color: #005a9c;
+    }
+    
+    .idlAttrName,
+    .idlFieldName,
+    .idlMemberName {
+      color: #ff4500;
+    }
+    
+    .idlAttrName a,
+    .idlFieldName a,
+    .idlMemberName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlMethod*/
+    
+    .idlMethType,
+    .idlCallbackType {
+      color: #005a9c;
+    }
+    
+    .idlMethName {
+      color: #ff4500;
+    }
+    
+    .idlMethName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlCtor*/
+    
+    .idlCtorName {
+      color: #ff4500;
+    }
+    
+    .idlCtorName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlParam*/
+    
+    .idlParamType {
+      color: #005a9c;
+    }
+    
+    .idlParamName,
+    .idlDefaultValue {
+      font-style: italic;
+    }
+    
+    .extAttr {
+      color: #666;
+    }
+    /*.idlSectionComment*/
+    
+    .idlSectionComment {
+      color: gray;
+    }
+    /*.idlIterable*/
+    
+    .idlIterableKeyType,
+    .idlIterableValueType {
+      color: #005a9c;
+    }
+    /*.idlMaplike*/
+    
+    .idlMaplikeKeyType,
+    .idlMaplikeValueType {
+      color: #005a9c;
+    }
+    /*.idlConst*/
+    
+    .idlConstType {
+      color: #005a9c;
+    }
+    
+    .idlConstName {
+      color: #ff4500;
+    }
+    
+    .idlConstName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlException*/
+    
+    .idlExceptionID {
+      font-weight: bold;
+      color: #c00;
+    }
+    
+    .idlTypedefID,
+    .idlTypedefType {
+      color: #005a9c;
+    }
+    
+    .idlRaises,
+    .idlRaises a.idlType,
+    .idlRaises a.idlType code,
+    .excName a,
+    .excName a code {
+      color: #c00;
+      font-weight: normal;
+    }
+    
+    .excName a {
+      font-family: monospace;
+    }
+    
+    .idlRaises a.idlType,
+    .excName a.idlType {
+      border-bottom: 1px dotted #c00;
+    }
+    
+    .excGetSetTrue,
+    .excGetSetFalse,
+    .prmNullTrue,
+    .prmNullFalse,
+    .prmOptTrue,
+    .prmOptFalse {
+      width: 45px;
+      text-align: center;
+    }
+    
+    .excGetSetTrue,
+    .prmNullTrue,
+    .prmOptTrue {
+      color: #0c0;
+    }
+    
+    .excGetSetFalse,
+    .prmNullFalse,
+    .prmOptFalse {
+      color: #c00;
+    }
+    
+    .idlImplements a {
+      font-weight: bold;
+    }
+    
+    dl.attributes,
+    dl.methods,
+    dl.constants,
+    dl.constructors,
+    dl.fields,
+    dl.dictionary-members {
+      margin-left: 2em;
+    }
+    
+    .attributes dt,
+    .methods dt,
+    .constants dt,
+    .constructors dt,
+    .fields dt,
+    .dictionary-members dt {
+      font-weight: normal;
+    }
+    
+    .attributes dt code,
+    .methods dt code,
+    .constants dt code,
+    .constructors dt code,
+    .fields dt code,
+    .dictionary-members dt code {
+      font-weight: bold;
+      color: #000;
+      font-family: monospace;
+    }
+    
+    .attributes dt code,
+    .fields dt code,
+    .dictionary-members dt code {
+      background: #ffffd2;
+    }
+    
+    .attributes dt .idlAttrType code,
+    .fields dt .idlFieldType code,
+    .dictionary-members dt .idlMemberType code {
+      color: #005a9c;
+      background: transparent;
+      font-family: inherit;
+      font-weight: normal;
+      font-style: italic;
+    }
+    
+    .methods dt code {
+      background: #d9e6f8;
+    }
+    
+    .constants dt code {
+      background: #ddffd2;
+    }
+    
+    .constructors dt code {
+      background: #cfc;
+    }
+    
+    .attributes dd,
+    .methods dd,
+    .constants dd,
+    .constructors dd,
+    .fields dd,
+    .dictionary-members dd {
+      margin-bottom: 1em;
+    }
+    
+    table.parameters,
+    table.exceptions {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin: 0.5em 0;
+      width: 100%;
+    }
+    
+    table.parameters {
+      border-bottom: 1px solid #90b8de;
+    }
+    
+    table.exceptions {
+      border-bottom: 1px solid #deb890;
+    }
+    
+    .parameters th,
+    .exceptions th {
+      color: inherit;
+      padding: 3px 5px;
+      text-align: left;
+      font-weight: normal;
+    }
+    
+    .parameters th {
+      color: #fff;
+      background: #005a9c;
+    }
+    
+    .exceptions th {
+      background: #deb890;
+    }
+    
+    .parameters td,
+    .exceptions td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+      vertical-align: top;
+    }
+    
+    .parameters tr:first-child td,
+    .exceptions tr:first-child td {
+      border-top: none;
+    }
+    
+    .parameters td.prmName,
+    .exceptions td.excName,
+    .exceptions td.excCodeName {
+      width: 100px;
+    }
+    
+    .parameters td.prmType {
+      width: 120px;
+    }
+    
+    table.exceptions table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      width: 100%;
+    }
+  </style>
+  <style id="respec-mainstyle">
+    /*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+    /* Override code highlighter background */
+    
+    .hljs {
+      background: transparent !important;
+    }
+    /* --- INLINES --- */
+    
+    em.rfc2119 {
+      text-transform: lowercase;
+      font-variant: small-caps;
+      font-style: normal;
+      color: #900;
+    }
+    
+    h1 acronym,
+    h2 acronym,
+    h3 acronym,
+    h4 acronym,
+    h5 acronym,
+    h6 acronym,
+    a acronym,
+    h1 abbr,
+    h2 abbr,
+    h3 abbr,
+    h4 abbr,
+    h5 abbr,
+    h6 abbr,
+    a abbr {
+      border: none;
+    }
+    
+    dfn {
+      font-weight: bold;
+    }
+    
+    a.internalDFN {
+      color: inherit;
+      border-bottom: 1px solid #99c;
+      text-decoration: none;
+    }
+    
+    a.externalDFN {
+      color: inherit;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    a.bibref {
+      text-decoration: none;
+    }
+    
+    cite .bibref {
+      font-style: normal;
+    }
+    
+    code {
+      color: #C83500;
+    }
+    
+    th code {
+      color: inherit;
+    }
+    /* --- TOC --- */
+    
+    .toc a,
+    .tof a {
+      text-decoration: none;
+    }
+    
+    a .secno,
+    a .figno {
+      color: #000;
+    }
+    
+    ul.tof,
+    ol.tof {
+      list-style: none outside none;
+    }
+    
+    .caption {
+      margin-top: 0.5em;
+      font-style: italic;
+    }
+    /* --- TABLE --- */
+    
+    table.simple {
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-bottom: 3px solid #005a9c;
+    }
+    
+    .simple th {
+      background: #005a9c;
+      color: #fff;
+      padding: 3px 5px;
+      text-align: left;
+    }
+    
+    .simple th[scope="row"] {
+      background: inherit;
+      color: inherit;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple tr:nth-child(even) {
+      background: #f0f6ff;
+    }
+    /* --- DL --- */
+    
+    .section dd>p:first-child {
+      margin-top: 0;
+    }
+    
+    .section dd>p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section dd {
+      margin-bottom: 1em;
+    }
+    
+    .section dl.attrs dd,
+    .section dl.eldef dd {
+      margin-bottom: 0;
+    }
+    
+    .respec-hidden {
+      display: none;
+    }
+    
+    #respec-ui {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 202px;
+      text-align: right;
+    }
+    
+    #respec-pill,
+    .respec-info-button {
+      background: #fff;
+      height: 2.5em;
+      color: rgb(120, 120, 120);
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 8px 0 rgba(100, 100, 100, .5);
+    }
+    
+    .respec-info-button {
+      border: none;
+      border-radius: 2em;
+      margin-right: 1em;
+      min-width: 3.5em;
+    }
+    
+    #respec-pill:disabled {
+      margin: 10px auto;
+      font-size: 2.8px;
+      position: relative;
+      text-indent: -9999em;
+      border-top: 1.1em solid rgba(40, 40, 40, 0.2);
+      border-right: 1.1em solid rgba(40, 40, 40, 0.2);
+      border-bottom: 1.1em solid rgba(40, 40, 40, 0.2);
+      border-left: 1.1em solid #ffffff;
+      transform: translateZ(0);
+      animation: respec-spin 1.1s infinite linear;
+      box-shadow: none;
+    }
+    
+    #respec-pill:disabled,
+    #respec-pill:disabled:after {
+      border-radius: 50%;
+      width: 10em;
+      height: 10em;
+    }
+    
+    @keyframes respec-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    #respec-pill:hover,
+    #respec-pill:focus {
+      color: rgb(0, 0, 0);
+      transition: color .2s
+    }
+    
+    #respec-menu {
+      font-family: sans-serif;
+      background: #fff;
+      box-shadow: 1px 1px 8px 0 rgba(100, 100, 100, .5);
+      width: 200px;
+      display: none;
+      text-align: left;
+      margin-top: 5px;
+      font-size: .8em;
+    }
+    
+    .respec-save-button {
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 5px;
+      display: block;
+      width: 100%;
+      color: #000;
+      text-decoration: none;
+      text-align: center;
+      font-size: inherit;
+    }
+    
+    #respec-ui button:focus,
+    #respec-pill:focus,
+    .respec-option:focus {
+      outline: 0;
+      outline-style: none;
+    }
+    
+    #respec-ui button.respec-pill-error {
+      background-color: red;
+      color: white;
+    }
+    
+    #respec-ui button.respec-pill-warning {
+      background-color: orange;
+      color: white;
+    }
+    
+    #respec-menu button.respec-option {
+      background: white;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-size: inherit;
+      padding: 1.2em 1.2em;
+    }
+    
+    #respec-menu button.respec-option:hover {
+      background-color: #eeeeee;
+    }
+    
+    .respec-cmd-icon {
+      padding-right: .5em;
+    }
+    
+    #respec-ui button.respec-option:last-child {
+      border: none;
+      border-radius: inherit;
+    }
+    
+    @media print {
+      .removeOnSave {
+        display: none;
+      }
+    }
+  </style>
+  <title>
+    Remote Playback API
+  </title>
+
+
+  <style>
+    /* Note formatting taken from Presentation API spec for consistency in the
+       Second Screen WG */
+    
+    .note {
+      border-left-style: solid;
+      border-left-width: 0.25em;
+      background: none repeat scroll 0 0 #E9FBE9;
+      border-color: #52E052;
+    }
+    
+    .note em,
+    .warning em,
+    .note i,
+    .warning i {
+      font-style: normal;
+    }
+    
+    p.note,
+    div.note {
+      padding: 0.5em 2em;
+    }
+    
+    span.note {
+      padding: 0 2em;
+    }
+    
+    .note p:first-child {
+      margin-top: 0;
+    }
+    
+    .note p:last-child {
+      margin-bottom: 0;
+    }
+    
+    p.note:before {
+      content: 'NOTE: ';
+    }
+    
+    .non-normative {
+      border-left-style: solid;
+      border-left-width: 0.25em;
+      background: none repeat scroll 0 0 #E9FBE9;
+      border-color: #52E052;
+    }
+    
+    p.non-normative:before {
+      content: 'Non-normative: ';
+      font-weight: bolder;
+    }
+    
+    p.non-normative,
+    div.non-normative {
+      padding: 0.5em 2em;
+    }
+    
+    .algorithm li {
+      margin-bottom: 0.5em;
+    }
+    
+    .interface dd,
+    .parameters dt {
+      margin-bottom: 0.5em;
+    }
+    
+    code {
+      color: orangered;
+    }
+    
+    table {
+      border-collapse: collapse;
+      border-style: hidden hidden none hidden;
+    }
+    
+    table thead,
+    table tbody {
+      border-bottom: solid;
+    }
+    
+    table td,
+    table th {
+      border-left: solid;
+      border-right: solid;
+      border-bottom: solid thin;
+      vertical-align: top;
+      padding: 0.2em;
+    }
+    
+    dfn {
+      font-weight: bolder;
+      font-style: normal;
+    }
+    
+    .copyright {
+      font-size: small;
+    }
+    
+    .issue[id^='issue-']>*:not([role='heading']) {
+      display: none;
+    }
+  </style>
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD">
+  <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+  <link rel="canonical" href="https://www.w3.org/TR/remote-playback/">
+  <meta name="generator" content="ReSpec 6.0.2">
+  <script id="initialUserConfig" type="application/json">
+    {
+      "specStatus": "WD",
+      "publishDate": "2016-11-03",
+      "edDraftURI": "https://w3c.github.io/remote-playback/",
+      "shortName": "remote-playback",
+      "editors": [
+      {
+        "w3cid": 68811,
+        "name": "Anton Vayvod",
+        "company": "Google"
+      },
+      {
+        "w3cid": 45389,
+        "name": "Mounir Lamouri",
+        "company": "Google"
+      }],
+      "sotdAfterWGinfo": true,
+      "previousMaturity": "FPWD",
+      "previousPublishDate": "2016-07-14",
+      "otherLinks": [
+      {
+        "key": "Version history",
+        "data": [
+        {
+          "value": "GitHub w3c/remote-playback/commits",
+          "href": "https://github.com/w3c/remote-playback/commits/"
+        }]
+      },
+      {
+        "key": "Participate",
+        "data": [
+        {
+          "value": "GitHub w3c/remote-playback",
+          "href": "https://github.com/w3c/remote-playback/"
+        },
+        {
+          "value": "File an issue",
+          "href": "https://github.com/w3c/remote-playback/issues/new"
+        },
+        {
+          "value": "Open issues",
+          "href": "https://github.com/w3c/remote-playback/issues/"
+        },
+        {
+          "value": "Mailing-list (public-secondscreen@w3.org)",
+          "href": "https://lists.w3.org/Archives/Public/public-secondscreen/"
+        }]
+      }],
+      "wg": "Second Screen Working Group",
+      "wgURI": "https://www.w3.org/2014/secondscreen/",
+      "wgPublicList": "public-secondscreen",
+      "wgPatentURI": "https://www.w3.org/2004/01/pp-impl/74168/status",
+      "issueBase": "https://www.github.com/w3c/remote-playback/issues/",
+      "githubAPI": "https://api.github.com/repos/w3c/remote-playback"
+    }
+  </script>
+</head>
+<body class="h-entry toc-inline" role="document" id="respecDocument">
+  <div class="head" role="contentinfo" id="respecHeader">
+    <p>
+      <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
+    </p>
+    <h1 class="title p-name" id="title" property="dcterms:title">Remote Playback API</h1>
+    <h2 id="w3c-working-draft-03-november-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Working Draft <time property="dcterms:issued" class="dt-published" datetime="2016-11-03">03 November 2016</time></h2>
+    <dl>
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="https://www.w3.org/TR/2016/WD-remote-playback-20161103/">https://www.w3.org/TR/2016/WD-remote-playback-20161103/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="https://www.w3.org/TR/remote-playback/">https://www.w3.org/TR/remote-playback/</a></dd>
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="https://w3c.github.io/remote-playback/">https://w3c.github.io/remote-playback/</a></dd>
+      <dt>Previous version:</dt>
+      <dd><a rel="dcterms:replaces" href="https://www.w3.org/TR/2016/WD-remote-playback-20160714/">https://www.w3.org/TR/2016/WD-remote-playback-20160714/</a></dd>
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0" data-editor-id="68811"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anton Vayvod</span>, Google</span>
+        <span property="rdf:rest" resource="_:editor1"></span>
+      </dd>
+      <dd class="p-author h-card vcard" resource="_:editor1" data-editor-id="45389"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Mounir Lamouri</span>, Google</span>
+        <span property="rdf:rest" resource="rdf:nil"></span>
+      </dd>
+
+      <dt>Version history:</dt>
+      <dd>
+        <a href="https://github.com/w3c/remote-playback/commits/">
+                      GitHub w3c/remote-playback/commits
+                    </a>
+      </dd>
+      <dt>Participate:</dt>
+      <dd>
+        <a href="https://github.com/w3c/remote-playback/">
+                      GitHub w3c/remote-playback
+                    </a>
+      </dd>
+      <dd>
+        <a href="https://github.com/w3c/remote-playback/issues/new">
+                      File an issue
+                    </a>
+      </dd>
+      <dd>
+        <a href="https://github.com/w3c/remote-playback/issues/">
+                      Open issues
+                    </a>
+      </dd>
+      <dd>
+        <a href="https://lists.w3.org/Archives/Public/public-secondscreen/">
+                      Mailing-list (public-secondscreen@w3.org)
+                    </a>
+      </dd>
+    </dl>
+    <p class="copyright">
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2016
+
+      <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+      <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
+      <abbr title="World Wide Web Consortium">W3C</abbr> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+      <a rel="license" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
+    </p>
+    <hr title="Separator for header">
+  </div>
+
+  <section id="abstract" class="introductory" property="dc:abstract">
+    <h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+    <p>
+      This specification defines an API extending the <code><a href="#dom-htmlmediaelement" class="internalDFN" data-link-type="dfn"><code>HTMLMediaElement</code></a>
+      </code>
+      that enables controlling remote playback of media from a web page.
+    </p>
+  </section>
+
+  <section id="sotd" class="introductory">
+    <h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+    <p>
+      <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>
+    </p>
+    <p>
+      This document was published by the <a href="https://www.w3.org/2014/secondscreen/">Second Screen Working Group</a> as a Working Draft. This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation. If you wish to make comments regarding this document, please send them to
+      <a href="mailto:public-secondscreen@w3.org">public-secondscreen@w3.org</a> (<a href="mailto:public-secondscreen-request@w3.org?subject=subscribe">subscribe</a>,
+      <a href="https://lists.w3.org/Archives/Public/public-secondscreen/">archives</a>). All comments are welcome.
+    </p>
+
+    <p>
+      This document builds on the group's experience on presenting web content on external presentation-type displays, and re-uses patterns and design considerations from the Presentation API specification whenever appropriate [<cite><a class="bibref" href="#bib-PRESENTATION-API">PRESENTATION-API</a></cite>].
+    </p>
+    <p>
+      Although this document is still a <strong>work in progress</strong> and is subject to change, the Working Group believes that the API surface is stable. Most of the remaining issues listed on the
+      <a href="https://github.com/w3c/remote-playback/issues/">issue
+        tracker</a> are considered minor at this stage, except
+      <a href="https://github.com/w3c/remote-playback/issues/41">issue #41</a> which discusses the set of media playback features that remote playback devices must support and the impact of remote playback on the observable behavior from the controlling page's perspective. The Working Group welcomes feedback on that issue. For other issues or concerns, it is possible to <a href="https://github.com/w3c/remote-playback/issues/new">file a bug</a> or send an email to the <a href="https://lists.w3.org/Archives/Public/public-secondscreen/">mailing list</a>. For small editorial changes like typos, sending a pull request is appreciated.
+    </p>
+    <p>
+      The Working Group invites everyone to review this document, and will work with relevant groups at <abbr title="World Wide Web Consortium">W3C</abbr> to conduct horizontal reviews on accessibility, internationalization, privacy, security and technical architecture principles.
+    </p>
+
+    <p>
+      Publication as a Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+    </p>
+    <p>
+      This document was produced by a group operating under the
+      <a id="sotd_patent" property="w3p:patentRules" href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+              Policy</a>.
+      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/74168/status" rel="disclosure">public list of any patent
+                disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
+      <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+              Claim(s)</a> must disclose the information in accordance with
+      <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+    </p>
+    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+    </p>
+
+  </section>
+  <nav id="toc">
+    <h2 class="introductory" id="table-of-contents" resource="#table-of-contents"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2>
+    <ol class="toc" role="directory">
+      <li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">1. </span>Conformance</a></li>
+      <li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">2. </span>
+        Introduction
+      </a></li>
+      <li class="tocline"><a href="#use-cases-and-requirements" class="tocxref"><span class="secno">3. </span>Use cases and requirements</a></li>
+      <li class="tocline"><a href="#dependencies" class="tocxref"><span class="secno">4. </span>Dependencies</a></li>
+      <li class="tocline"><a href="#examples" class="tocxref"><span class="secno">5. </span>
+        Examples
+      </a>
+        <ol class="toc">
+          <li class="tocline"><a href="#monitor-availability-of-remote-playback-devices-example" class="tocxref"><span class="secno">5.1 </span>
+          Monitor availability of remote playback devices example
+        </a></li>
+          <li class="tocline"><a href="#starting-remote-playback-of-a-video-example" class="tocxref"><span class="secno">5.2 </span>
+          Starting remote playback of a video example
+        </a></li>
+          <li class="tocline"><a href="#monitoring-remote-playback-state-changes" class="tocxref"><span class="secno">5.3 </span>
+          Monitoring remote playback state changes
+        </a></li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#api" class="tocxref"><span class="secno">6. </span>API</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#common-idioms" class="tocxref"><span class="secno">6.1 </span>Common idioms</a></li>
+          <li class="tocline"><a href="#remoteplayback-interface" class="tocxref"><span class="secno">6.2 </span><code><span class="formerLink" data-link-type="dfn"><code>RemotePlayback</code></span></code> interface</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#observing-remote-playback-device-availability" class="tocxref"><span class="secno">6.2.1 </span>
+            Observing remote playback device availability
+          </a>
+                <ol class="toc">
+                  <li class="tocline"><a href="#the-set-of-availability-callbacks" class="tocxref"><span class="secno">6.2.1.1 </span>
+              The set of availability callbacks
+            </a></li>
+                  <li class="tocline"><a href="#the-list-of-available-remote-playback-devices" class="tocxref"><span class="secno">6.2.1.2 </span>
+              The list of available remote playback devices
+            </a></li>
+                  <li class="tocline"><a href="#getting-the-remote-playback-devices-availability-information" class="tocxref"><span class="secno">6.2.1.3 </span>
+              Getting the <span class="formerLink" data-link-type="dfn">remote playback devices</span> availability information
+            </a></li>
+                  <li class="tocline"><a href="#monitoring-the-list-of-available-remote-playback-devices" class="tocxref"><span class="secno">6.2.1.4 </span>
+              Monitoring the list of available remote playback devices
+            </a></li>
+                  <li class="tocline"><a href="#stop-observing-remote-playback-devices-availability" class="tocxref"><span class="secno">6.2.1.5 </span>
+              Stop observing remote playback devices availability
+            </a></li>
+                </ol>
+              </li>
+              <li class="tocline"><a href="#prompt-user-for-changing-remote-playback-state" class="tocxref"><span class="secno">6.2.2 </span>
+            Prompt user for changing remote playback state
+          </a></li>
+              <li class="tocline"><a href="#the-state-attribute" class="tocxref"><span class="secno">6.2.3 </span>
+            The <code><span class="formerLink" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></span></code> attribute
+          </a></li>
+              <li class="tocline"><a href="#establishing-a-connection-with-a-remote-playback-device" class="tocxref"><span class="secno">6.2.4 </span>
+            Establishing a connection with a remote playback device
+          </a></li>
+              <li class="tocline"><a href="#media-commands-and-media-playback-state" class="tocxref"><span class="secno">6.2.5 </span>Media commands and media playback state</a></li>
+              <li class="tocline"><a href="#disconnecting-from-remote-playback-device" class="tocxref"><span class="secno">6.2.6 </span>Disconnecting from remote playback device</a></li>
+              <li class="tocline"><a href="#event-handlers" class="tocxref"><span class="secno">6.2.7 </span>
+            Event Handlers
+          </a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#extension-to-the-htmlmediaelement" class="tocxref"><span class="secno">7. </span>Extension to the <code><span class="formerLink" data-link-type="dfn"><code>HTMLMediaElement</code></span></code></a>
+        <ol class="toc">
+          <li class="tocline"><a href="#disabling-remote-playback" class="tocxref"><span class="secno">7.1 </span>Disabling remote playback</a></li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#references" class="tocxref"><span class="secno">A. </span>References</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">A.1 </span>Normative references</a></li>
+          <li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">A.2 </span>Informative references</a></li>
+        </ol>
+      </li>
+    </ol>
+  </nav>
+
+  <section id="conformance" typeof="bibo:Chapter" resource="#conformance" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-conformance" resource="#h-conformance"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Conformance</span>
+    </h2>
+    <p>
+      As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.
+    </p>
+    <p id="respecRFC2119">The key words <em class="rfc2119" title="MAY">MAY</em>, <em class="rfc2119" title="MUST">MUST</em>, <em class="rfc2119" title="MUST NOT">MUST NOT</em>, and <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em> are to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
+    </p>
+
+    <p>
+      This specification defines conformance criteria that apply to a single product: the <dfn data-dfn-type="dfn" id="dfn-user-agent">user agent</dfn> that implements the interfaces that it contains.
+    </p>
+    <p>
+      Implementations that use ECMAScript to expose the APIs defined in this specification <em class="rfc2119" title="MUST">MUST</em> implement them in a manner consistent with the ECMAScript Bindings defined in the Web IDL specification [<cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>].
+    </p>
+  </section>
+
+  <section class="informative" id="introduction" typeof="bibo:Chapter" resource="#introduction" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-introduction" resource="#h-introduction"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span> Introduction
+      </span>
+    </h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>
+      This specification aims to make <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback devices</a> such as connected TVs, projectors or audio-only speakers, available to the Web and takes into account playback devices that are attached using wired (HDMI, DVI, or similar) and wireless technologies (Miracast, Chromecast, DLNA, AirPlay, or similar).
+    </p>
+    <p>
+      Devices with limited screen size or quiet speakers lack the ability to playback media content to a larger audience, for example, a group of colleagues in a conference room, or friends and family at home. Playing media content on an external larger and/or louder <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> helps to improve the perceived quality and impact of the played media.
+    </p>
+    <p>
+      At its core, this specification enables a page that acts as the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> to initiate and control remote playback of a particular media element on a selected
+      <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a>. How the remoting is initiated and controlled is left to the UA in order to allow the use of <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback devices</a> that can be attached in a wide variety of ways. For example, when a <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> is attached using HDMI or Miracast, the same UA that acts as the
+      <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> renders the remote media. Instead of playing the media on the same device, however, it can use whatever means the operating system provides for using the external <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a>. In such a case, both the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> and the media player run on the same UA and the operating system is used to route the player output to the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a>. This is commonly referred to as the
+      <dfn data-dfn-type="dfn" id="dfn-media-mirroring"><b id="media-mirroring">media mirroring</b></dfn> case. This specification imposes no requirements on the
+      <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback devices</a> connected in such a manner.
+    </p>
+    <p>
+      If the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> is able to play the media and communicate with the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> but is unable to fetch the media, the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> needs to fetch the media data and pass it on to the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> for rendering. This is commonly referred to as <dfn data-dfn-type="dfn" id="dfn-media-remoting"><b id="media-remoting">media remoting</b></dfn> case.
+    </p>
+    <p>
+      If the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> is able to fetch and play the media and communicate with the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a>, the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> does not need to fetch or render the remoted media. In this case, the UA acts as a proxy that requests the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> to play the media itself by passing the necessary data like the media source. This is commonly referred to as the <dfn data-dfn-type="dfn" id="dfn-media-flinging"><b id="media-flinging">media flinging</b></dfn> case. This way of attaching to displays could be enhanced in the future by defining a standard protocol for delivering these types of messages that remote playback devices could choose to implement.
+    </p>
+    <p>
+      The API defined here is intended to be used with UAs that attach to
+      <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> devices through any of the above means.
+    </p>
+  </section>
+
+  <section class="informative" id="use-cases-and-requirements" typeof="bibo:Chapter" resource="#use-cases-and-requirements" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-use-cases-and-requirements" resource="#h-use-cases-and-requirements"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Use cases and requirements</span>
+    </h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>
+      The use cases and requirements of this specification are captured in a separate document available <a href="https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md">here</a>.
+    </p>
+  </section>
+
+  <section id="dependencies" typeof="bibo:Chapter" resource="#dependencies" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-dependencies" resource="#h-dependencies"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>Dependencies</span>
+    </h2>
+    <p>
+      The following concepts and interfaces are defined in [<cite><a class="bibref" href="#bib-HTML">HTML</a></cite>]:
+    </p>
+    <ul>
+      <li>
+        <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-htmlmediaelement" data-idl=""><code><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlmediaelement">HTMLMediaElement</a></code></dfn>,
+        <dfn data-dfn-type="dfn" id="dfn-media-element"><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#media-element">media element</a></dfn>,
+        <dfn data-dfn-type="dfn" id="dfn-selecting-media-resource"><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#concept-media-load-algorithm">selecting media resource</a></dfn>,
+        <dfn data-dfn-type="dfn" id="dfn-current-source"><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-currentsrc">current source</a></dfn> and
+        <dfn data-dfn-type="dfn" id="dfn-media-resource"><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#location-of-the-media-resource">media resource</a></dfn>
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-browsing-context"><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a></dfn> and
+        <dfn data-dfn-type="dfn" id="dfn-allowed-to-show-a-popup"><a href="https://html.spec.whatwg.org/multipage/browsers.html#allowed-to-show-a-popup">allowed to show a popup</a></dfn>
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-event-handler"><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a></dfn>,
+        <dfn data-dfn-type="dfn" id="dfn-event-handler-event-type"><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a></dfn>,
+        <dfn data-dfn-type="dfn" id="dfn-fire-a-simple-event"><a href="https://html.spec.whatwg.org/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a></dfn> and
+        <dfn data-dfn-type="dfn" id="dfn-queue-a-task"><a href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a></dfn>
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-firing-an-event"><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-event-fire">firing an event</a></dfn> and
+        <dfn data-dfn-type="dfn" id="dfn-in-parallel"><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a></dfn>,
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-cereactions"><a href="https://html.spec.whatwg.org/multipage/scripting.html#cereactions"><code>[CEReactions]</code></a></dfn>
+      </li>
+    </ul>
+
+    <p>
+      The term <dfn data-dfn-type="dfn" id="dfn-url"><a href="https://url.spec.whatwg.org/#url">URL</a></dfn> is defined in the WHATWG URL standard [<cite><a class="bibref" href="#bib-URL">URL</a></cite>].
+    </p>
+
+    <p>
+      The term <dfn data-dfn-type="dfn" id="dfn-throw">throw</dfn> in this specification is used as defined in [
+      <cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>].
+    </p>
+
+    <p>
+      The following exception names are defined by [<cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>] and used by this specification:
+    </p>
+    <ul>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-invalidaccesserror"><code>InvalidAccessError</code></dfn>
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-invalidstateerror"><code>InvalidStateError</code></dfn>
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-notallowederror"><code>NotAllowedError</code></dfn>
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-notfounderror"><code>NotFoundError</code></dfn>
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-notsupportederror"><code>NotSupportedError</code></dfn>
+      </li>
+      <li>
+        <dfn data-dfn-type="dfn" id="dfn-operationerror"><code>OperationError</code></dfn>
+      </li>
+    </ul>
+  </section>
+
+  <section id="examples" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-examples" resource="#h-examples"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span> Examples
+      </span>
+    </h2>
+    <p>
+      This section shows code examples that highlight the usage of the main features of the Remote Playback API. In these examples, <code>player.html</code> implements the player page controlling the remote playback and
+      <code>media.ext</code> is the media file to be played remotely. Both the page and the media are served from the domain <code>https://example.org</code>. Please refer to the comments in the code examples for further details.
+    </p>
+
+    <section id="monitor-availability-of-remote-playback-devices-example" typeof="bibo:Chapter" resource="#monitor-availability-of-remote-playback-devices-example" property="bibo:hasPart">
+      <h3 id="h-monitor-availability-of-remote-playback-devices-example" resource="#h-monitor-availability-of-remote-playback-devices-example"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.1 </span> Monitor availability of remote playback devices example
+        </span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 1</span></div><pre class="highlight hljs xml"><span class="hljs-comment">&lt;!-- player.html --&gt;</span>
+<span class="hljs-comment">&lt;!-- The video element with custom controls that supports remote playback. --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"videoElement"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://example.org/media.ext"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"deviceBtn"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display: none;"</span>&gt;</span>Pick device<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-comment">// The "Pick device" button is visible if at least one remote playback device is available.</span>
+  <span class="hljs-keyword">var</span> deviceBtn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"deviceBtn"</span>);
+  <span class="hljs-keyword">var</span> videoElem = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"videoElement"</span>);
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">availabilityCallback</span>(<span class="hljs-params">available</span>) </span>{
+    <span class="hljs-comment">// Show or hide the device picker button depending on device availability.</span>
+    deviceBtn.style.display = available ? <span class="hljs-string">"inline"</span> : <span class="hljs-string">"none"</span>;
+  }
+
+  videoElem.remote.watchAvailability(availabilityCallback).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Availability monitoring is not supported by the platform, so discovery of</span>
+    <span class="hljs-comment">// remote playback devices will happen only after remote.connect() is called.</span>
+    <span class="hljs-comment">// Pretend the devices are available for simplicity; or, one could implement</span>
+    <span class="hljs-comment">// a third state for the button.</span>
+    deviceBtn.style.display = <span class="hljs-string">"inline"</span>;
+  });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></pre></div>
+    </section>
+
+    <section id="starting-remote-playback-of-a-video-example" typeof="bibo:Chapter" resource="#starting-remote-playback-of-a-video-example" property="bibo:hasPart">
+      <h3 id="h-starting-remote-playback-of-a-video-example" resource="#h-starting-remote-playback-of-a-video-example"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2 </span> Starting remote playback of a video example
+        </span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 2</span></div><pre class="highlight hljs xml"><span class="hljs-comment">&lt;!-- player.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  devicesBtn.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Request the user to select a remote playback device.</span>
+    videoElem.remote.prompt()
+      <span class="hljs-comment">// Update the UI and monitor the connected state.</span>
+      .then(updateRemotePlaybackState);
+      <span class="hljs-comment">// Otherwise, the user cancelled the selection UI or no screens were found.</span>
+  };
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined"></span></span></span></pre></div>
+    </section>
+
+    <section id="monitoring-remote-playback-state-changes" typeof="bibo:Chapter" resource="#monitoring-remote-playback-state-changes" property="bibo:hasPart">
+      <h3 id="h-monitoring-remote-playback-state-changes" resource="#h-monitoring-remote-playback-state-changes"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.3 </span> Monitoring remote playback state changes
+        </span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 3</span></div><pre class="highlight hljs xml"><span class="hljs-comment">&lt;!-- player.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-comment">// The remote playback may be initiated by the user agent,</span>
+  <span class="hljs-comment">// so check the initial state to sync the UI with it.</span>
+  <span class="hljs-keyword">if</span> (videoElem.remote.state == <span class="hljs-string">"disconnected"</span>)
+    switchToLocalUI();
+  <span class="hljs-keyword">else</span>
+    switchToRemoteUI();
+
+  videoElem.remote.onconnecting = switchToRemoteUI;
+  videoElem.remote.onconnect = swithToRemoteUI;
+  videoElem.remote.ondisconnect = switchToLocalUI;
+
+  <span class="hljs-comment">// Handles both 'connecting' and 'connected' state. Calling more than once</span>
+  <span class="hljs-comment">// is a no-op.</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">switchToRemoteUI</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Indicate that the state is 'connecting' or 'connected' to the user.</span>
+    <span class="hljs-comment">// For example, hide the video element as only controls are needed.</span>
+    videoElem.style.display = <span class="hljs-string">"none"</span>;
+
+    <span class="hljs-comment">// Stop monitoring the availability of remote playback devices.</span>
+    videoElem.remote.cancelWatchAvailability();
+  };
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">switchToLocalUI</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Show the video element.</span>
+    videoElem.style.display = <span class="hljs-string">"inline"</span>;
+    <span class="hljs-comment">// Start watching the device availability again.</span>
+    videoElem.remote.watchAvailability(availabilityCallback);
+  };
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined"></span></span></span></pre></div>
+    </section>
+  </section>
+
+  <section id="api" typeof="bibo:Chapter" resource="#api" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-api" resource="#h-api"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>API</span>
+    </h2>
+
+    <section id="common-idioms" typeof="bibo:Chapter" resource="#common-idioms" property="bibo:hasPart">
+      <h3 id="h-common-idioms" resource="#h-common-idioms"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.1 </span>Common idioms</span>
+      </h3>
+      <p>
+        A <dfn data-dfn-type="dfn" id="dfn-local-playback-device">local playback device</dfn> is the device the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> is running on along with the default video/audio outputs the device has.
+      </p>
+      <div class="note">
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note1"><span>Note</span></div>
+        <div class="">
+          A <a href="#dfn-local-playback-device" class="internalDFN" data-link-type="dfn">local playback device</a> might have extra outputs, like an external display or speakers/headphones. As long as the switch of what output to use happens outside of the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> on the system level, the playback is considered to happen on a <a href="#dfn-local-playback-device" class="internalDFN" data-link-type="dfn">local playback device</a> for the purpose of this spec.
+        </div>
+      </div>
+      <p></p>
+      <p>
+        A <dfn data-dfn-type="dfn" id="dfn-remote-playback-device">remote playback device</dfn> is any other device but the <a href="#dfn-local-playback-device" class="internalDFN" data-link-type="dfn">local playback device</a> that the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> can use to play media on.
+      </p>
+      <p>
+        A <dfn data-dfn-type="dfn" id="dfn-media-element-state">media element state</dfn> is the set of all single <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> properties observable by the page and/or the user via the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> implementation. The new properties introduced by this spec are not considered part of the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a> for convenience.
+      </p>
+      <div class="example">
+        For example, the <code>paused</code> attribute or the pause/resume button reflecting that state on the default controls of the media element would be a part of <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a>.
+      </div>
+      <p></p>
+      <p>
+        A <dfn data-dfn-type="dfn" id="dfn-local-playback-state">local playback state</dfn> is the user agent implementation of <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a> for the particular <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> for playback on the <a href="#dfn-local-playback-device" class="internalDFN" data-link-type="dfn">local playback device</a>.
+      </p>
+      <p>
+        A <dfn data-dfn-type="dfn" id="dfn-remote-playback-state">remote playback state</dfn> is the user agent implementation of <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a> for the particular <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> for playback on the certain <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a>.
+      </p>
+      <div class="note">
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note2"><span>Note</span></div>
+        <p class="">
+          For a good user experience it is important that the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a> doesn't change unexpectedly when the <code><a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a>
+          </code> changes. It is also important that <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn">remote playback state</a> is in sync with the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a> so when the media is paused on the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> it looks paused to both the user and the page.
+        </p>
+      </div>
+    </section>
+
+    <section id="remoteplayback-interface" typeof="bibo:Chapter" resource="#remoteplayback-interface" property="bibo:hasPart">
+      <h3 id="h-remoteplayback-interface" resource="#h-remoteplayback-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2 </span><code><a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a>
+        </code> interface</span>
+      </h3>
+      <pre class="def idl"><span class="idlInterface" id="idl-def-remoteplayback" data-idl="" data-title="RemotePlayback">interface <span class="idlInterfaceID">RemotePlayback</span> : <span class="idlSuperclass">EventTarget</span> {
+<span class="idlMethod" id="idl-def-remoteplayback-watchavailability(remoteplaybackavailabilitycallback)" data-idl="" data-title="watchAvailability" data-dfn-for="remoteplayback">    <span class="idlMethType">Promise&lt;long&gt;</span> <span class="idlMethName"><a data-lt="watchAvailability" href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>watchAvailability</code></a></span>(<span class="idlParam"><span class="idlParamType"><a href="#idl-def-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="dfn"><code>RemotePlaybackAvailabilityCallback</code></a></span> <span class="idlParamName">callback</span></span>);</span>
+<span class="idlMethod" id="idl-def-remoteplayback-cancelwatchavailability(optional-long)" data-idl="" data-title="cancelWatchAvailability" data-dfn-for="remoteplayback">    <span class="idlMethType">Promise&lt;void&gt;</span> <span class="idlMethName"><a data-lt="cancelWatchAvailability" href="#dom-remoteplayback-cancelwatchavailability" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>cancelWatchAvailability</code></a></span>(<span class="idlParam">optional <span class="idlParamType">long</span> <span class="idlParamName">id</span></span>);</span>
+
+<span class="idlAttribute" id="idl-def-remoteplayback-state" data-idl="" data-title="state" data-dfn-for="remoteplayback">    readonly attribute <span class="idlAttrType"><a href="#idl-def-remoteplaybackstate" class="internalDFN" data-link-type="dfn"><code>RemotePlaybackState</code></a></span> <span class="idlAttrName"><a data-lt="state" href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a></span>;</span>
+
+<span class="idlAttribute" id="idl-def-remoteplayback-onconnecting" data-idl="" data-title="onconnecting" data-dfn-for="remoteplayback">             attribute <span class="idlAttrType">EventHandler</span>        <span class="idlAttrName"><a data-lt="onconnecting" href="#dom-remoteplayback-onconnecting" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>onconnecting</code></a></span>;</span>
+<span class="idlAttribute" id="idl-def-remoteplayback-onconnect" data-idl="" data-title="onconnect" data-dfn-for="remoteplayback">             attribute <span class="idlAttrType">EventHandler</span>        <span class="idlAttrName"><a data-lt="onconnect" href="#dom-remoteplayback-onconnect" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>onconnect</code></a></span>;</span>
+<span class="idlAttribute" id="idl-def-remoteplayback-ondisconnect" data-idl="" data-title="ondisconnect" data-dfn-for="remoteplayback">             attribute <span class="idlAttrType">EventHandler</span>        <span class="idlAttrName"><a data-lt="ondisconnect" href="#dom-remoteplayback-ondisconnect" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>ondisconnect</code></a></span>;</span>
+
+<span class="idlMethod" id="idl-def-remoteplayback-prompt()" data-idl="" data-title="prompt" data-dfn-for="remoteplayback">    <span class="idlMethType">Promise&lt;void&gt;</span> <span class="idlMethName"><a data-lt="prompt" href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>prompt</code></a></span>();</span>
+};</span>
+
+<span class="idlEnum" id="idl-def-remoteplaybackstate" data-idl="" data-title="RemotePlaybackState">enum <span class="idlEnumID">RemotePlaybackState</span> {
+    "<a href="#dom-remoteplaybackstate-connecting" class="idlEnumItem">connecting</a>",
+    "<a href="#dom-remoteplaybackstate-connected" class="idlEnumItem">connected</a>",
+    "<a href="#dom-remoteplaybackstate-disconnected" class="idlEnumItem">disconnected</a>"
+};</span>
+
+<span class="idlCallback" id="idl-def-remoteplaybackavailabilitycallback" data-idl="" data-title="RemotePlaybackAvailabilityCallback">callback <span class="idlCallbackID">RemotePlaybackAvailabilityCallback</span> = <span class="idlCallbackType">void</span> (<span class="idlParam"><span class="idlParamType">boolean</span> <span class="idlParamName">available</span></span>);</span></pre>
+
+      <section id="observing-remote-playback-device-availability" typeof="bibo:Chapter" resource="#observing-remote-playback-device-availability" property="bibo:hasPart">
+        <h4 id="h-observing-remote-playback-device-availability" resource="#h-observing-remote-playback-device-availability"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.1 </span> Observing remote playback device availability
+          </span>
+        </h4>
+        <p>
+          A <a href="#idl-def-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="dfn"><code><code>RemotePlaybackAvailabilityCallback</code></code></a> is the way for the page to obtain the
+          <dfn data-dfn-type="dfn" id="dfn-remote-playback-device-availability">remote playback device availability</dfn> for the corresponding <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>. If the user agent can <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list of available remote playback devices</a> in the background (without a pending request to <code><a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>prompt</code></a>()</code>), the
+          <a href="#idl-def-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="dfn"><code><code>RemotePlaybackAvailabilityCallback</code></code></a> behavior defined below <em class="rfc2119" title="MUST">MUST</em> be implemented by the user agent. Otherwise, the promise returned by <code><a href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>watchAvailability</code></a>()</code>
+          <em class="rfc2119" title="MUST">MUST</em> be rejected with <a href="#dfn-notsupportederror" class="internalDFN" data-link-type="dfn"><code>NotSupportedError</code></a>.
+        </p>
+
+        <section id="the-set-of-availability-callbacks" typeof="bibo:Chapter" resource="#the-set-of-availability-callbacks" property="bibo:hasPart">
+          <h5 id="h-the-set-of-availability-callbacks" resource="#h-the-set-of-availability-callbacks"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.1.1 </span> The set of availability callbacks
+            </span>
+          </h5>
+          <p>
+            The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> keep track of the <dfn data-dfn-type="dfn" id="dfn-set-of-availability-callbacks">set of
+              availability callbacks</dfn> registered with each <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> through the <code><a href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>watchAvailability</code></a>()</code> method. The
+            <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a> for each <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> object is represented as a set of tuples
+            <em>(<var>callbackId</var>, <var>callback</var>)</em>, initially empty, where:
+          </p>
+          <ol>
+            <li>
+              <var>callbackId</var> is an id unique to the <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> object;
+            </li>
+            <li>
+              <var>callback</var> is a <a href="#idl-def-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="dfn"><code>RemotePlaybackAvailabilityCallback</code></a> object;
+            </li>
+          </ol>
+          <p></p>
+          <p>
+            Since there's one and only one <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> object per each <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of
+              availability callbacks</a> of a <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> is the same set as the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability
+              callbacks</a> of the <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> object referred to by the element's <a href="#dom-htmlmediaelement-remote" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>remote</code></a> property.
+          </p>
+          <p>
+            The combined set of all <a data-lt="set of availability callbacks" href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">sets of availability callbacks</a> of all <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> objects known to the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> is referred to as
+            <dfn data-dfn-type="dfn" id="dfn-global-set-of-availability-callbacks">global set of availability callbacks</dfn>.
+          </p>
+        </section>
+
+        <section id="the-list-of-available-remote-playback-devices" typeof="bibo:Chapter" resource="#the-list-of-available-remote-playback-devices" property="bibo:hasPart">
+          <h5 id="h-the-list-of-available-remote-playback-devices" resource="#h-the-list-of-available-remote-playback-devices"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.1.2 </span> The list of available remote playback devices
+            </span>
+          </h5>
+          <p>
+            The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> keep a <dfn data-dfn-type="dfn" id="dfn-list-of-available-remote-playback-devices">list of available remote playback devices</dfn>. This list contains <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback devices</a> and is populated based on an implementation specific discovery mechanism. It is set to the most recent result of the algorithm to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor
+              the list of available remote playback devices</a>.
+          </p>
+          <p>
+            The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MAY">MAY</em> not support running the algorithm to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list of available remote
+              playback devices</a> continuously, for example, because of platform or power consumption restrictions. In this case the promise returned by <code><a href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>watchAvailability</code></a>()</code>
+            <em class="rfc2119" title="MUST">MUST</em> be rejected with <a href="#dfn-notsupportederror" class="internalDFN" data-link-type="dfn"><code>NotSupportedError</code></a>, the <a href="#dfn-global-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">global set of availability callbacks</a> will be empty and the algorithm to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list of available remote playback devices</a> will only run as part of the <a href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn">initiate remote playback</a> algorithm.
+          </p>
+          <p>
+            When the <a href="#dfn-global-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">global set of availability callbacks</a> is not empty, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the
+              list of available remote playback devices</a> continuously, so that pages can keep track of the last value received via the registered callbacks to offer remote playback only when there are available devices.
+          </p>
+          <div class="note">
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note3"><span>Note</span></div>
+            <p class="">
+              User agents <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em> <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list of available remote playback devices</a> when possible, to satisfy the
+              <a href="https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md#power-saving-friendly">
+                power saving non-functional requirement</a>. For example, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MAY">MAY</em> not run the monitoring algorithm when the <a href="#dfn-global-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">global set of availability callbacks</a> is empty or each page that has
+              <a data-lt="media element" href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media elements</a> with non-empty <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a> is not in the foreground.
+            </p>
+          </div>
+          <p>
+            Some <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback devices</a> may only be able to play a subset of
+            <a href="#dfn-media-resource" class="internalDFN" data-link-type="dfn" data-for="media resource">media resources</a> because of functional, security or hardware limitations. Examples are set-top boxes, smart TVs or networked speakers capable of rendering only certain formats of video and/or audio. We say that such a device is a <dfn data-dfn-type="dfn" id="dfn-compatible-remote-playback-device">compatible remote playback device</dfn> for a
+            <a href="#dfn-media-resource" class="internalDFN" data-link-type="dfn">media resource</a> if the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> can reasonably guarantee that the remote playback of the media specified by the resource will succeed on that device.
+          </p>
+          <p>
+            The <a href="#dfn-media-resource" class="internalDFN" data-link-type="dfn">media resources</a> of a <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, that were considered by the user agent to find a <a href="#dfn-compatible-remote-playback-device" class="internalDFN" data-link-type="dfn">compatible remote playback device</a>, are called the <dfn data-dfn-type="dfn" id="dfn-availability-sources-set">availability sources set</dfn>.
+          </p>
+          <p>
+            The <a href="#dfn-media-resource" class="internalDFN" data-link-type="dfn">media resource</a> of a <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, that is used to <a href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn">initiate remote playback</a> on the selected <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> is called <dfn data-dfn-type="dfn" id="dfn-remote-playback-source">remote playback source</dfn>. Remote playback source <em class="rfc2119" title="MUST">MUST</em> belong to <a href="#dfn-availability-sources-set" class="internalDFN" data-link-type="dfn">availability sources set</a>.
+          </p>
+          <p>
+            The mechanism of picking the <a href="#dfn-availability-sources-set" class="internalDFN" data-link-type="dfn">availability sources set</a> and the <a href="#dfn-remote-playback-source" class="internalDFN" data-link-type="dfn">remote playback source</a> is implementation-specific. For example, the user agent <em class="rfc2119" title="MUST">MUST</em> either use the
+            <a href="#dfn-current-source" class="internalDFN" data-link-type="dfn" data-for="media element">currentSrc</a> of the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> for both availability monitoring and remote playback or use all the media resources associated with the media element as the
+            <a href="#dfn-availability-sources-set" class="internalDFN" data-link-type="dfn">availability sources set</a> and pick one of the resources as the <a href="#dfn-remote-playback-source" class="internalDFN" data-link-type="dfn">remote playback source</a> after user selects the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a>.
+          </p>
+          <p>
+            Remote playback is said to be <dfn data-dfn-type="dfn" id="dfn-unavailable">unavailable</dfn> for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> if the
+            <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">list of available remote playback devices</a> is empty or none of them is compatible with any source from <a href="#dfn-availability-sources-set" class="internalDFN" data-link-type="dfn">availability sources set</a> for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>. The remote playback is said to be <dfn data-dfn-type="dfn" id="dfn-available">available</dfn> otherwise. A <code>boolean</code> set to <code>false</code> if the remote playback is <a href="#dfn-unavailable" class="internalDFN" data-link-type="dfn">unavailable</a> for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> or <code>true</code> if it is <a href="#dfn-available" class="internalDFN" data-link-type="dfn">available</a> is called <dfn data-dfn-type="dfn" id="dfn-availability">availability</dfn> for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>.
+          </p>
+        </section>
+
+        <section id="getting-the-remote-playback-devices-availability-information" typeof="bibo:Chapter" resource="#getting-the-remote-playback-devices-availability-information" property="bibo:hasPart">
+          <h5 id="h-getting-the-remote-playback-devices-availability-information" resource="#h-getting-the-remote-playback-devices-availability-information"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.1.3 </span> Getting the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback devices</a> availability information
+            </span>
+          </h5>
+          <p>
+            When the <code><dfn data-dfn-for="remoteplayback" data-dfn-type="dfn" id="dom-remoteplayback-watchavailability" data-idl="">watchAvailability</dfn>()</code> method is called, the user agent <em class="rfc2119" title="MUST">MUST</em> run the following steps:
+          </p>
+          <dl>
+            <dt>
+                Input
+              </dt>
+            <dd>
+              <var>callback</var>, the callback that will get fired with availability information.
+            </dd>
+            <dt>
+                Output
+              </dt>
+            <dd>
+              <var>promise</var>, a promise.
+            </dd>
+          </dl>
+          <ol>
+            <li>
+              Let <var>promise</var> be a new promise.
+            </li>
+            <li>
+              Return <var>promise</var>, and run the following steps below:
+            </li>
+            <li>
+              If the <a href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>disableRemotePlayback</code></a> attribute is present for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, reject the <var>promise</var> with <a href="#dfn-invalidstateerror" class="internalDFN" data-link-type="dfn"><code>InvalidStateError</code></a> and abort all the remaining steps.
+            </li>
+            <li>
+              If the user agent is unable to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list of available
+                remote playback devices</a> for the entire lifetime of the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a> (for instance, because the user has disabled this feature), then run the following steps in parallel:
+              <ol>
+                <li>
+                  Fulfill <var>promise</var>.
+                </li>
+                <li>
+                  <a href="#dfn-queue-a-task" class="internalDFN" data-link-type="dfn">Queue a task</a> to invoke the <var>callback</var> with <code>false</code> as its argument.
+                </li>
+                <li>Abort all remaining steps.
+                </li>
+              </ol>
+            </li>
+            <li>If the user agent is unable to continuously <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list
+              of available remote playback devices</a> but can do it for a short period of time when <a data-lt="initiate remote playback" href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn">initiating remote playback</a>, then:
+              <ol>
+                <li>
+                  Reject <var>promise</var> with a <a href="#dfn-notsupportederror" class="internalDFN" data-link-type="dfn"><code>NotSupportedError</code></a> exception.
+                </li>
+                <li>Abort all remaining steps.
+                </li>
+              </ol>
+            </li>
+            <li>
+              Let <var>callbackId</var> be a number unique to the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> that will identify the
+              <var>callback</var>.
+            </li>
+            <li>
+              Create a tuple <em>(<var>callbackId</var>, <var>callback</var>)</em> and add it to the
+              <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a> for this <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>.
+            </li>
+            <li>
+              Fulfill <var>promise</var> with the <var>callbackId</var> and run the following steps <a href="#dfn-in-parallel" class="internalDFN" data-link-type="dfn">in parallel</a>:
+              <ol>
+                <li>
+                  <a href="#dfn-queue-a-task" class="internalDFN" data-link-type="dfn">Queue a task</a> to invoke the <var>callback</var> with the current <a href="#dfn-availability" class="internalDFN" data-link-type="dfn">availability</a> for the
+                  <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>.
+                </li>
+                <li>
+                  Run the algorithm to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list of available remote playback devices</a>.
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </section>
+
+        <section id="monitoring-the-list-of-available-remote-playback-devices" typeof="bibo:Chapter" resource="#monitoring-the-list-of-available-remote-playback-devices" property="bibo:hasPart">
+          <h5 id="h-monitoring-the-list-of-available-remote-playback-devices" resource="#h-monitoring-the-list-of-available-remote-playback-devices"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.1.4 </span> Monitoring the list of available remote playback devices
+            </span>
+          </h5>
+          <p>
+            If the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a> is non-empty, or there is a pending request to <a data-lt="prompt" href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback">initiate remote playback</a>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> <dfn data-dfn-type="dfn" id="dfn-monitor-the-list-of-available-remote-playback-devices">monitor the list of available remote playback devices</dfn> by running the following steps:
+          </p>
+          <ol>
+            <li>
+              Retrieve available remote playback devices (using an implementation specific mechanism) and let <var>newDevices</var> be this list.
+            </li>
+            <li>
+              For each <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> known to the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a>:
+              <ol>
+                <li>
+                  If the <a href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>disableRemotePlayback</code></a> attribute is present for <var>mediaElement</var>, abort all the remaining steps for this tuple and continue to the next one.
+                </li>
+                <li>
+                  Set <var>newAvailabilityValue</var> to the value of <a href="#dfn-availability" class="internalDFN" data-link-type="dfn">availability</a> for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> calculated using the <var>newDevices</var> list instead of the <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">list of available remote playback
+                    devices</a>.
+                </li>
+                <li>
+                  If the current <a href="#dfn-availability" class="internalDFN" data-link-type="dfn">availability</a> is not equal to <var>newAvailabilityValue</var>, then for each <em>(<var>callbackId</var>, <var>callback</var>)</em> of the element's
+                  <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a>:
+                  <ol>
+                    <li>
+                      <a href="#dfn-queue-a-task" class="internalDFN" data-link-type="dfn">Queue a task</a> to invoke <var>callback</var> with <var>newAvailabilityValue</var> as its argument.
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li>
+              Set the <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">list of available remote playback devices</a> to the value of <var>newDevices</var>.
+            </li>
+          </ol>
+        </section>
+
+        <section id="stop-observing-remote-playback-devices-availability" typeof="bibo:Chapter" resource="#stop-observing-remote-playback-devices-availability" property="bibo:hasPart">
+          <h5 id="h-stop-observing-remote-playback-devices-availability" resource="#h-stop-observing-remote-playback-devices-availability"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.1.5 </span> Stop observing remote playback devices availability
+            </span>
+          </h5>
+          <p>
+            When a <code><dfn data-dfn-for="remoteplayback" data-dfn-type="dfn" id="dom-remoteplayback-cancelwatchavailability" data-idl="">cancelWatchAvailability</dfn>()</code> method is called, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the following steps:
+          </p>
+          <dl>
+            <dt>
+                Input
+              </dt>
+            <dd>
+              <var>id</var>, the callback identifier.
+            </dd>
+            <dt>
+                Output
+              </dt>
+            <dd>
+              <var>promise</var>, a promise.
+            </dd>
+          </dl>
+          <ol>
+            <li>
+              Let <var>promise</var> be a new promise.
+            </li>
+            <li>
+              Return <var>promise</var>, and run the following steps below:
+            </li>
+            <li>
+              If the <a href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>disableRemotePlayback</code></a> attribute is present for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, reject <var>promise</var> with <a href="#dfn-invalidstateerror" class="internalDFN" data-link-type="dfn"><code>InvalidStateError</code></a> and abort all the remaining steps.
+            </li>
+            <li>
+              If the parameter <var>id</var> is <code>undefined</code>, clear the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a>.
+            </li>
+            <li>
+              Otherwise, if <var>id</var> matches the <var>callbackId</var> for any entry in the
+              <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a>, remove the entry from the set.
+            </li>
+            <li>
+              Otherwise, reject <var>promise</var> with <a href="#dfn-notfounderror" class="internalDFN" data-link-type="dfn"><code>NotFoundError</code></a> and abort all the remaining steps.
+            </li>
+            <li>
+              If the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a> is now empty and there is no pending request to
+              <a data-lt="prompt" href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn" data-for="RemotePlabyack">initiate remote playback</a>, cancel any pending task to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list of available remote playback devices</a> for power saving purposes.
+            </li>
+            <li>
+              Fulfill <var>promise</var>.
+            </li>
+          </ol>
+          <div class="note">
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note4"><span>Note</span></div>
+            <div class="">
+              The mechanism used to monitor <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback devices</a> availability and determine the compatibility of a <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> with the selected <a href="#dfn-availability-sources-set" class="internalDFN" data-link-type="dfn">availability sources set</a> is left to the user agent.
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="prompt-user-for-changing-remote-playback-state" typeof="bibo:Chapter" resource="#prompt-user-for-changing-remote-playback-state" property="bibo:hasPart">
+        <h4 id="h-prompt-user-for-changing-remote-playback-state" resource="#h-prompt-user-for-changing-remote-playback-state"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.2 </span> Prompt user for changing remote playback state
+          </span>
+        </h4>
+        <p>
+          When the <code><dfn data-dfn-for="remoteplayback" data-dfn-type="dfn" id="dom-remoteplayback-prompt" data-idl="">prompt</dfn>()</code> method is called, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the following steps:
+        </p>
+        <dl>
+          <dt>
+              Input
+            </dt>
+          <dd>
+            None, but the algorithm references the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, its <a data-lt="RemotePlayback" href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>remote</code></a> property and its <a href="#dfn-availability-sources-set" class="internalDFN" data-link-type="dfn">availability sources set</a>.
+          </dd>
+          <dt>
+              Output
+            </dt>
+          <dd>
+            A promise.
+          </dd>
+        </dl>
+        <ol>
+          <li>
+            Let <var>promise</var> be a new promise.
+          </li>
+          <li>
+            Return <var>promise</var> and continue running these steps
+            <a href="#dfn-in-parallel" class="internalDFN" data-link-type="dfn">in parallel</a>.
+          </li>
+          <li>
+            If the <a href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>disableRemotePlayback</code></a> attribute is present for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, reject the <var>promise</var> with <a href="#dfn-invalidstateerror" class="internalDFN" data-link-type="dfn"><code>InvalidStateError</code></a> and abort all the remaining steps.
+          </li>
+          <li>
+            If there is already an unsettled promise from a previous call to <a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>prompt</code></a> for the same
+            <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> or even for the same <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a>, the user agent <em class="rfc2119" title="MAY">MAY</em> reject <var>promise</var> with an <a href="#dfn-operationerror" class="internalDFN" data-link-type="dfn"><code>OperationError</code></a> exception and abort all remaining steps.
+            <div class="note">
+              <div class="note-title marker" aria-level="5" role="heading" id="h-note5"><span>Note</span></div>
+              <div class="">
+                The rationale here is that the user agent might use the UI that's modal to either the
+                <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> or the <a href="#dfn-browsing-context" class="internalDFN" data-link-type="dfn">browsing context</a>. In such a case, the second call to <code><a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>prompt</code></a>()</code>
+                would not be able to show any UI.
+              </div>
+            </div>
+          </li>
+          <li>
+            OPTIONALLY, if the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> knows a priori that showing the UI for this particular <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media
+              element</a> is not feasible, reject <var>promise</var> with a <a href="#dfn-notsupportederror" class="internalDFN" data-link-type="dfn"><code>NotSupportedError</code></a> and abort all remaining steps.
+            <div class="note">
+              <div class="note-title marker" aria-level="5" role="heading" id="h-note6"><span>Note</span></div>
+              <div class="">
+                An example of such scenario could be when the user agent only supports <a href="#dfn-media-flinging" class="internalDFN" data-link-type="dfn">media flinging</a> case while the media element's source is not a <a href="#dfn-url" class="internalDFN" data-link-type="dfn">URL</a> that could be passed over to any <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a>.
+              </div>
+            </div>
+          </li>
+          <li>
+            If the algorithm isn't <a href="#dfn-allowed-to-show-a-popup" class="internalDFN" data-link-type="dfn">allowed to show a popup</a>, reject <var>promise</var> with an <a href="#dfn-invalidaccesserror" class="internalDFN" data-link-type="dfn"><code>InvalidAccessError</code></a> exception and abort these steps.
+          </li>
+          <li>
+            If the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> needs to show the <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">list of available remote playback devices</a> and is not <a data-lt="monitor the list of available remote playback devices" href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">
+              monitoring the list of available remote playback devices</a>, run the steps to
+            <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">monitor the list of available remote playback devices</a> <a href="#dfn-in-parallel" class="internalDFN" data-link-type="dfn">in parallel</a>.
+          </li>
+          <li>
+            If the <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn">list of available remote playback devices</a> is empty and will remain so before the request for user permission is completed, reject
+            <var>promise</var> with a <a href="#dfn-notfounderror" class="internalDFN" data-link-type="dfn"><code>NotFoundError</code></a> exception and abort all remaining steps.
+          </li>
+          <li>
+            If the <code><a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a>
+            </code> is <code>disconnected</code> and
+            <a href="#dfn-availability" class="internalDFN" data-link-type="dfn">availability</a> for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> is <code>false</code>, reject <var>promise</var> with a <a href="#dfn-notsupportederror" class="internalDFN" data-link-type="dfn"><code>NotSupportedError</code></a> exception and abort all remaining steps.
+          </li>
+          <li>
+            If the user picked a <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> <var>device</var> to
+            <dfn data-dfn-type="dfn" id="dfn-initiate-remote-playback">initiate remote playback</dfn> with, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the following steps:
+            <ol>
+              <li>
+                Set the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a> of the <var>remote</var> object to
+                <a href="#dom-remoteplaybackstate-connecting" class="internalDFN" data-link-type="dfn" data-for="RemotePlaybackState"><code>connecting</code></a>.
+              </li>
+              <li>
+                Fulfill <var>promise</var>.
+              </li>
+              <li>
+                <a href="#dfn-queue-a-task" class="internalDFN" data-link-type="dfn">Queue a task</a> to <a href="#dfn-fire-a-simple-event" class="internalDFN" data-link-type="dfn">fire a simple event</a> with the name <a href="#dfn-connecting" class="internalDFN" data-link-type="dfn"><code>connecting</code></a> at the
+                <a data-lt="RemotePlayback" href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>remote</code></a> property of the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>. The event must not bubble, must not be cancelable, and has no default action.
+              </li>
+              <li>
+                <a href="#dfn-establish-a-connection-with-the-remote-playback-device" class="internalDFN" data-link-type="dfn">Establish a connection with the remote playback device</a> <var>device</var> for the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>.
+              </li>
+            </ol>
+            <div class="note">
+              <div class="note-title marker" aria-level="5" role="heading" id="h-note7"><span>Note</span></div>
+              <p class="">
+                By picking a <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> the user <em>grants permission</em> to use the device.
+              </p>
+            </div>
+          </li>
+          <li>
+            Otherwise, if the user chose to disconnect from the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> <var>device</var>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the following steps:
+            <ol>
+              <li>
+                Fulfill <var>promise</var>.
+              </li>
+              <li>
+                Run the <a href="#dfn-disconnect-from-remote-playback-device" class="internalDFN" data-link-type="dfn">disconnect from remote playback device</a> algorithm for the <var>device</var>.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Otherwise, the user is considered to <em>deny permission</em> to use the device, so reject
+            <var>promise</var> with <a href="#dfn-notallowederror" class="internalDFN" data-link-type="dfn"><code>NotAllowedError</code></a> exception and hide the UI shown by the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>
+          </li>
+        </ol>
+        <div class="note">
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note8"><span>Note</span></div>
+          <div class="">
+            The details of implementing the UI and device selection are left to the user agent; for example it <em class="rfc2119" title="MAY">MAY</em> show the user a dialog and allow the user to select an available device (<em>granting permission</em>), or cancel the selection (<em>denying permission</em>).
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note9"><span>Note</span></div>
+          <div class="">
+            The algorithm to select the <a href="#dfn-remote-playback-source" class="internalDFN" data-link-type="dfn">remote playback source</a> for a selected device depends on the user agent and supported <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> types. For example, in case of <a href="#dfn-media-mirroring" class="internalDFN" data-link-type="dfn">media mirroring</a> the user agent can simply follow the <a href="#dom-htmlmediaelement" class="internalDFN" data-link-type="dfn"><code>HTMLMediaElement</code></a>'s
+            <a href="#dfn-selecting-media-resource" class="internalDFN" data-link-type="dfn">resource selection algorithm</a>. However, if <a href="#dfn-media-remoting" class="internalDFN" data-link-type="dfn">media remoting</a> or <a href="#dfn-media-flinging" class="internalDFN" data-link-type="dfn">media flinging</a> is used, the best media source can depend on the selected <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> fetch and playback capabilities.
+          </div>
+        </div>
+      </section>
+
+      <section id="the-state-attribute" typeof="bibo:Chapter" resource="#the-state-attribute" property="bibo:hasPart">
+        <h4 id="h-the-state-attribute" resource="#h-the-state-attribute"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.3 </span> The <code><a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a>
+          </code> attribute
+          </span>
+        </h4>
+        <p>
+          The <dfn data-dfn-for="remoteplayback" data-dfn-type="dfn" id="dom-remoteplayback-state" data-idl=""><code>state</code></dfn> attribute represents the
+          <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> connection's current state. It can take one of the values of <a href="#idl-def-remoteplaybackstate" class="internalDFN" data-link-type="dfn"><code>RemotePlaybackState</code></a> depending on the connection state:
+        </p>
+        <ul data-dfn-for="remoteplaybackstate">
+          <li>
+            <dfn data-dfn-for="remoteplaybackstate" data-dfn-type="dfn" id="dom-remoteplaybackstate-connecting" data-idl=""><code>connecting</code></dfn> means that the user agent is attempting to
+            <a href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn">initiate remote playback</a> with the selected <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a>. This is the initial state when the <code>promise</code> returned by
+            <code><a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>prompt</code></a>()</code> is fulfilled with <code>true</code>. The local playback of the media element continues in this state and media commands still take effect on the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn">local playback state</a>.
+          </li>
+          <li>
+            <dfn data-dfn-for="remoteplaybackstate" data-dfn-type="dfn" id="dom-remoteplaybackstate-connected" data-idl=""><code>connected</code></dfn> means that the transition from local to remote playback has finished and all media commands now take effect on the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn">remote playback state</a>.
+          </li>
+          <li>
+            <dfn data-dfn-for="remoteplaybackstate" data-dfn-type="dfn" id="dom-remoteplaybackstate-disconnected" data-idl=""><code>disconnected</code></dfn> means that the remote playback has not been <a data-lt="initiate remote playback" href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn">initiated</a>, has failed to initiate or has been stopped. All media commands will take effect on the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn">local playback state</a>. The remote playback can be initiated through a call to <code><a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>prompt</code></a>()</code>.
+          </li>
+        </ul>
+      </section>
+
+      <section id="establishing-a-connection-with-a-remote-playback-device" typeof="bibo:Chapter" resource="#establishing-a-connection-with-a-remote-playback-device" property="bibo:hasPart">
+        <h4 id="h-establishing-a-connection-with-a-remote-playback-device" resource="#h-establishing-a-connection-with-a-remote-playback-device"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.4 </span> Establishing a connection with a remote playback device
+          </span>
+        </h4>
+        <p>
+          When the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> is to <dfn data-dfn-type="dfn" id="dfn-establish-a-connection-with-the-remote-playback-device">establish a connection with the remote playback device</dfn>, it <em class="rfc2119" title="MUST">MUST</em> run the following steps:
+        </p>
+        <dl>
+          <dt>
+              Input
+            </dt>
+          <dd>
+            <var>remote</var>, the <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> object that is to be connected.
+          </dd>
+          <dd>
+            <var>device</var>, the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> to connect to.
+          </dd>
+        </dl>
+        <ol>
+          <li>
+            If the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a> of <var>remote</var> is not equal to
+            <a href="#dom-remoteplaybackstate-connecting" class="internalDFN" data-link-type="dfn" data-for="RemotePlaybackState"><code>connecting</code></a>, abort all the remaining steps.
+          </li>
+          <li>
+            Request connection of <var>remote</var> to <var>device</var>. The implementation of this step is specific to the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>.
+          </li>
+          <li>
+            If connection completes successfully, <a href="#dfn-queue-a-task" class="internalDFN" data-link-type="dfn">queue a task</a> to run the following steps:
+            <ol>
+              <li>
+                Set the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a> of <var>remote</var> to
+                <a href="#dom-remoteplaybackstate-connected" class="internalDFN" data-link-type="dfn" data-for="RemotePlaybackState"><code>connected</code></a>.
+              </li>
+              <li>
+                <a href="#dfn-fire-a-simple-event" class="internalDFN" data-link-type="dfn">Fire a simple event</a> named <a href="#dfn-connect" class="internalDFN" data-link-type="dfn"><code>connect</code></a> at <var>remote</var>.
+              </li>
+              <li>
+                Synchronize the current <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a> with the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn">remote playback state</a>. Implementation is specific to <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>.
+              </li>
+            </ol>
+          </li>
+          <li>
+            If connection fails, <a href="#dfn-queue-a-task" class="internalDFN" data-link-type="dfn">queue a task</a> to run the following steps:
+            <ol>
+              <li>
+                Set the <a data-lt="state" href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback">remote playback state</a> of <var>remote</var> to
+                <a href="#dom-remoteplaybackstate-disconnected" class="internalDFN" data-link-type="dfn" data-for="RemotePlaybackState"><code>disconnected</code></a>.
+              </li>
+              <li>
+                <a href="#dfn-fire-a-simple-event" class="internalDFN" data-link-type="dfn">Fire a simple event</a> named <a href="#dfn-disconnect" class="internalDFN" data-link-type="dfn"><code>disconnect</code></a> at <var>remote</var>.
+              </li>
+            </ol>
+          </li>
+        </ol>
+        <div class="note">
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note10"><span>Note</span></div>
+          <div class="">
+            The mechanism that is used to connect the user agent with the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> and play the <a href="#dfn-remote-playback-source" class="internalDFN" data-link-type="dfn">remote playback source</a> is an implementation choice of the user agent. The connection will likely have to provide a two-way messaging abstraction capable of carrying media commands to the remote playback device and receiving media playback state in order to keep the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a> and
+            <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn">remote playback state</a> in sync (unless <a href="#dfn-media-mirroring" class="internalDFN" data-link-type="dfn">media mirroring</a> is used).
+          </div>
+        </div>
+      </section>
+
+      <section id="media-commands-and-media-playback-state" typeof="bibo:Chapter" resource="#media-commands-and-media-playback-state" property="bibo:hasPart">
+        <h4 id="h-media-commands-and-media-playback-state" resource="#h-media-commands-and-media-playback-state"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.5 </span>Media commands and media playback state</span>
+        </h4>
+        <p>
+          The <a href="#dom-htmlmediaelement" class="internalDFN" data-link-type="dfn"><code>HTMLMediaElement</code></a> interface interacts with the remotely played media as soon as the connection with the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback
+            device</a> is established.
+        </p>
+        <p>
+          In particular, as soon as the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a> of a
+          <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> object has changed to
+          <a href="#dom-remoteplaybackstate-connected" class="internalDFN" data-link-type="dfn" data-for="RemotePlaybackState"><code>connected</code></a>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>
+          <em class="rfc2119" title="MUST">MUST</em> send all the media commands issued on the
+          <a href="#dom-htmlmediaelement" class="internalDFN" data-link-type="dfn"><code>HTMLMediaElement</code></a> object with which the <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> object is associated to the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> in order to change the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn">remote playback state</a> vs the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn">local playback state</a>.
+        </p>
+        <p>
+          Similarly, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> reflect all updates of the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn">remote playback state</a> received from the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> on the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a>.
+        </p>
+        <p>
+          If sending any command fails, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MAY">MAY</em> <a href="#dfn-disconnect-from-remote-playback-device" class="internalDFN" data-link-type="dfn">disconnect from
+            remote playback device</a>.
+        </p>
+      </section>
+
+      <section id="disconnecting-from-remote-playback-device" typeof="bibo:Chapter" resource="#disconnecting-from-remote-playback-device" property="bibo:hasPart">
+        <h4 id="h-disconnecting-from-remote-playback-device" resource="#h-disconnecting-from-remote-playback-device"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.6 </span>Disconnecting from remote playback device</span>
+        </h4>
+        <p>
+          When the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> is to <dfn data-dfn-type="dfn" id="dfn-disconnect-from-remote-playback-device">disconnect from remote playback device</dfn>, it <em class="rfc2119" title="MUST">MUST</em> do the following:
+        </p>
+        <dl>
+          <dt>
+              Input
+            </dt>
+          <dd>
+            <var>remote</var>, the <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> object representing the playback to be stopped.
+          </dd>
+          <dd>
+            <var>device</var>, the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> to disconnect from.
+          </dd>
+        </dl>
+        <ol>
+          <li>
+            If the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code><code>state</code></code></a> of <var>remote</var> is
+            <code>disconnected</code>, abort all remaining steps.
+          </li>
+          <li>
+            <a href="#dfn-queue-a-task" class="internalDFN" data-link-type="dfn">Queue a task</a> to run the following steps:
+            <ol>
+              <li>
+                Request disconnection of <var>remote</var> from the <var>device</var>. Implementation is <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> specific.
+              </li>
+              <li>
+                Change the <var>remote</var>'s <code>state</code> to <code>disconnected</code>.
+              </li>
+              <li>
+                <a data-lt="fire" href="#dfn-firing-an-event" class="internalDFN" data-link-type="dfn">Fire an event</a> with the name <a href="#dfn-disconnect" class="internalDFN" data-link-type="dfn"><code>disconnect</code></a> at <var>remote</var>.
+              </li>
+              <li>
+                Synchronize the current <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn">media element state</a> with the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn">local playback state</a>. Implementation is specific to <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>.
+              </li>
+            </ol>
+          </li>
+        </ol>
+        <div class="note">
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note11"><span>Note</span></div>
+          <div class="">
+            The remote playback device might not actually stop playback of the media when requested by the user agent since it's implementation specific and depends on the device in question. In such case stopping remote playback merely means the user agent literally only disconnecting from the remote playback device and the
+            <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a> switching to the <code>disconnected</code> state.
+          </div>
+        </div>
+      </section>
+
+      <section id="event-handlers" typeof="bibo:Chapter" resource="#event-handlers" property="bibo:hasPart">
+        <h4 id="h-event-handlers" resource="#h-event-handlers"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.7 </span> Event Handlers
+          </span>
+        </h4>
+        <p>
+          The following are the event handlers (and their corresponding event handler event types) that must be supported, as <a href="#dfn-event-handler" class="internalDFN" data-link-type="dfn">event handler</a> IDL attributes, by objects implementing the <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> interface:
+        </p>
+        <table data-dfn-for="remoteplayback">
+          <thead>
+            <tr>
+              <th>
+                Event handler
+              </th>
+              <th>
+                Event handler event type
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <dfn data-dfn-for="remoteplayback" data-dfn-type="dfn" id="dom-remoteplayback-onconnecting" data-idl=""><code>onconnecting</code></dfn>
+              </td>
+              <td>
+                <dfn data-dfn-type="dfn" id="dfn-connecting"><code>connecting</code></dfn>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <dfn data-dfn-for="remoteplayback" data-dfn-type="dfn" id="dom-remoteplayback-onconnect" data-idl=""><code>onconnect</code></dfn>
+              </td>
+              <td>
+                <dfn data-dfn-type="dfn" id="dfn-connect"><code>connect</code></dfn>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <dfn data-dfn-for="remoteplayback" data-dfn-type="dfn" id="dom-remoteplayback-ondisconnect" data-idl=""><code>ondisconnect</code></dfn>
+              </td>
+              <td>
+                <dfn data-dfn-type="dfn" id="dfn-disconnect"><code>disconnect</code></dfn>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+
+  <section id="extension-to-the-htmlmediaelement" typeof="bibo:Chapter" resource="#extension-to-the-htmlmediaelement" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-extension-to-the-htmlmediaelement" resource="#h-extension-to-the-htmlmediaelement"><span property="xhv:role" resource="xhv:heading"><span class="secno">7. </span>Extension to the <code><a href="#dom-htmlmediaelement" class="internalDFN" data-link-type="dfn"><code>HTMLMediaElement</code></a>
+      </code>
+      </span>
+    </h2>
+    <pre class="def idl"><span class="idlInterface" id="idl-def-htmlmediaelement-partial-1" data-idl="" data-title="HTMLMediaElement">partial interface <span class="idlInterfaceID"><a data-lt="HTMLMediaElement" href="#dom-htmlmediaelement" class="internalDFN" data-link-type="dfn" data-for=""><code>HTMLMediaElement</code></a></span> {
+<span class="idlAttribute" id="idl-def-htmlmediaelement-remote" data-idl="" data-title="remote" data-dfn-for="htmlmediaelement">    readonly attribute <span class="idlAttrType"><a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a></span> <span class="idlAttrName"><a data-lt="remote" href="#dom-htmlmediaelement-remote" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>remote</code></a></span>;</span>
+
+<span class="idlAttribute" id="idl-def-htmlmediaelement-disableremoteplayback" data-idl="" data-title="disableRemotePlayback" data-dfn-for="htmlmediaelement">    [<span class="extAttr"><span class="extAttrName">CEReactions</span></span>]
+             attribute <span class="idlAttrType">boolean</span>        <span class="idlAttrName"><a data-lt="disableRemotePlayback" href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>disableRemotePlayback</code></a></span>;</span>
+};</span></pre>
+    <p>
+      The <dfn data-dfn-for="htmlmediaelement" data-dfn-type="dfn" id="dom-htmlmediaelement-remote" data-idl=""><code>remote</code></dfn> attribute <em class="rfc2119" title="MUST">MUST</em> return the <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> instance associated with the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>.
+    </p>
+    <p>
+      The <dfn data-dfn-for="htmlmediaelement" data-dfn-type="dfn" id="dom-htmlmediaelement-disableremoteplayback" data-idl=""><code>disableRemotePlayback</code></dfn> IDL attribute
+      <em class="rfc2119" title="MUST">MUST</em> reflect the content attribute of the same name.
+    </p>
+
+    <section id="disabling-remote-playback" typeof="bibo:Chapter" resource="#disabling-remote-playback" property="bibo:hasPart">
+      <h3 id="h-disabling-remote-playback" resource="#h-disabling-remote-playback"><span property="xhv:role" resource="xhv:heading"><span class="secno">7.1 </span>Disabling remote playback</span>
+      </h3>
+      <p>
+        If the <a href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>disableRemotePlayback</code></a> attribute is present on the
+        <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST NOT">MUST NOT</em> play the media remotely or present any UI to do so.
+      </p>
+      <p>
+        When the <a href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="dfn" data-for="HTMLMediaElement"><code>disableRemotePlayback</code></a> attribute is added to the <a href="#dfn-media-element" class="internalDFN" data-link-type="dfn">media element</a>, the user agent <em class="rfc2119" title="MUST">MUST</em> run these steps:
+      </p>
+      <ol>
+        <li>
+          Reject any pending promises returned by the <a href="#idl-def-remoteplayback" class="internalDFN" data-link-type="dfn"><code>RemotePlayback</code></a> methods with <a href="#dfn-invalidstateerror" class="internalDFN" data-link-type="dfn"><code>InvalidStateError</code></a>.
+        </li>
+        <li>
+          Clear the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn">set of availability callbacks</a> for the media element.
+        </li>
+        <li>
+          If its <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="dfn" data-for="RemotePlayback"><code>state</code></a> is not <code>disconnected</code>, run the
+          <a href="#dfn-disconnect-from-remote-playback-device" class="internalDFN" data-link-type="dfn">disconnect from remote playback device</a> algorithm for the <a href="#dfn-remote-playback-device" class="internalDFN" data-link-type="dfn">remote playback device</a> the media element is connected or connecting to.
+        </li>
+      </ol>
+      <p></p>
+    </section>
+  </section>
+
+
+  <section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>References</span>
+    </h2>
+
+    <section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" property="bibo:hasPart">
+      <h3 id="h-normative-references" resource="#h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.1 </span>Normative references</span>
+      </h3>
+      <dl class="bibliography" resource=""><dt id="bib-HTML">[HTML]</dt>
+        <dd>Ian Hickson. WHATWG. <a href="https://html.spec.whatwg.org/multipage/" property="dc:requires"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/" property="dc:requires">https://html.spec.whatwg.org/multipage/</a>
+        </dd><dt id="bib-RFC2119">[RFC2119]</dt>
+        <dd>S. Bradner. IETF. <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires">https://tools.ietf.org/html/rfc2119</a>
+        </dd><dt id="bib-URL">[URL]</dt>
+        <dd>Anne van Kesteren; Sam Ruby. W3C. <a href="https://www.w3.org/TR/url-1/" property="dc:requires"><cite>URL</cite></a>. 9 December 2014. W3C Working Draft. URL: <a href="https://www.w3.org/TR/url-1/" property="dc:requires">https://www.w3.org/TR/url-1/</a>
+        </dd><dt id="bib-WEBIDL">[WEBIDL]</dt>
+        <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. W3C. <a href="https://www.w3.org/TR/WebIDL-1/" property="dc:requires"><cite>Web IDL</cite></a>. 15 September 2016. W3C Working Draft. URL: <a href="https://www.w3.org/TR/WebIDL-1/" property="dc:requires">https://www.w3.org/TR/WebIDL-1/</a>
+        </dd>
+      </dl>
+    </section>
+
+    <section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" property="bibo:hasPart">
+      <h3 id="h-informative-references" resource="#h-informative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2 </span>Informative references</span>
+      </h3>
+      <dl class="bibliography" resource=""><dt id="bib-PRESENTATION-API">[PRESENTATION-API]</dt>
+        <dd>Mark Foltz; Dominik Röttsches. W3C. <a href="https://www.w3.org/TR/presentation-api/" property="dc:references"><cite>Presentation API</cite></a>. 14 July 2016. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/presentation-api/" property="dc:references">https://www.w3.org/TR/presentation-api/</a>
+        </dd>
+      </dl>
+    </section>
+  </section>
+  <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to Top">↑</abbr></a></p>
+  <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+</body>
+</html>
